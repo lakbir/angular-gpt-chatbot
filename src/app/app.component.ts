@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-gpt-chatbot';
+  actions = [
+    {route : "/home", title : "Home", icon : "house"},
+    {route : "/gpt", title : "GPT", icon : "person"}
+  ];
+  currentAction : any;
+
+  constructor(private router: Router) {
+  }
+  handleRoute(action: any) {
+    this.currentAction = action;
+    this.router.navigateByUrl(action.route);
+  }
 }
